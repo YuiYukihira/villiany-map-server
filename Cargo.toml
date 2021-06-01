@@ -1,0 +1,30 @@
+[package]
+name = "map_server"
+version = "0.1.0"
+authors = ["Lucy Scarlet <yuiyukihira@pm.me>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[features]
+create = []
+
+[dependencies]
+noise = {version = "0.7"}
+serde = {version = "1.0", features = ["derive"]}
+data_types = { git = "https://github.com/YuiYukihira/villiany-data-types", rev = "b3a9856" }
+warp = {version = "0.3", optional = true}
+tokio = {version = "1.6", features = ["full"], optional = true}
+serde_json = {version = "1.0"}
+
+[lib]
+name = "map_data"
+path = "src/lib.rs"
+
+[[bin]]
+name = "map-server"
+path = "src/main.rs"
+required-features = ["create", "warp", "tokio"]
+
+[dev-dependencies]
+#data_types = {path = "../data_types"}
